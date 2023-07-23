@@ -5,5 +5,5 @@
   tasks:
     - name: install java
       ansible.builtin.apt:
-      name: openjdk-aa-jdk
-      update_cashe: yes
+        name: openjdk-aa-jdk
+        update_cashe: yes
