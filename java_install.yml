@@ -3,7 +3,7 @@
   become: yes
   hosts: all
   tasks:
-    - name: install jave
+    - name: install java
       ansible.builtin.apt:
       name: openjdk-aa-jdk
       update_cashe: yes
