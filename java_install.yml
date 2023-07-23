@@ -6,4 +6,4 @@
     - name: install java
       ansible.builtin.apt:
         name: openjdk-11-jdk
-        update_cashe: yes
+        update_cache: yes
