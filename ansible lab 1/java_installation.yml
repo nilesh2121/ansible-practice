@@ -1,6 +1,6 @@
 ---
 - name: Install Java
-  becpme: yes
+  become: yes
   hosts: all
   tasks:
     - name: install openjdk 11
