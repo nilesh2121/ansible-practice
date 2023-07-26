@@ -77,8 +77,8 @@
       loop: "{{ sh_files_tomcat_bin.files }}"  
       when: ansible_facts['os_family'] == "Debian"
     - name: copy the tomcat service
-      ansible.builtin.copy :
-        src: 'tomcat.service'
+      ansible.builtin.template :
+        src: 'tomcat.service.j2'
         dest: "{{ tomcat_service_location }}"
         owner: "{{ username }}"
         group: "{{ username }}"
@@ -88,7 +88,7 @@
         name: 'tomcat.service'
         daemon_reload: yes
         enabled: yes
-        state: started
+        state: restarted
       when: ansible_facts['os_family'] == "Debian"  
 
         
