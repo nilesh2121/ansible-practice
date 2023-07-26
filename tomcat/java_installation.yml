@@ -44,5 +44,13 @@
         src: "{{ home_dir }}/apache-tomcat-{{ tomcat_version }}"
         dest: "{{ tomcat_latest }}"
       when: ansible_facts['os_family'] == "Debian" 
+    - name: change the ownership to tomcat user
+      ansible.builtin.file:
+        path: "{{ home_dir }}"
+        state: directory
+        recurse: yes
+        group: "{{ username }}"
+        owner: "{{ username }}"
+      when: ansible_facts['os_family'] == "Debian"   
 
         
