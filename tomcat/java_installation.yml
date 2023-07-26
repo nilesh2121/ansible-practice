@@ -84,9 +84,10 @@
       when: ansible_facts['os_family'] == "Debian"
     - name: reload the daemon and enable start the tomcat services
       ansible.builtin.systemd:
+        name: 'tomcat.service'
         daemon_reload: yes
         enabled: yes
-        state: 'started'
+        state: started
       when: ansible_facts['os_family'] == "Debian"  
 
         
