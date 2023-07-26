@@ -72,7 +72,7 @@
         owner: "{{ username }}"
         group: "{{ username }}"
         mode: '0755'
-      loops: "{{ sh_files_tomcat_bin.files }}"  
+      loop: "{{ sh_files_tomcat_bin.files }}"  
       when: ansible_facts['os_family'] == "Debian"   
 
 
