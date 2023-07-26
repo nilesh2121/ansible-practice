@@ -43,6 +43,9 @@
       ansible.builtin.file:
         src: "{{ home_dir }}/apache-tomcat-{{ tomcat_version }}"
         dest: "{{ tomcat_latest }}"
+        group: "{{ username }}"
+        owner: "{{ username }}"
+        state: link
       when: ansible_facts['os_family'] == "Debian" 
     - name: change the ownership to tomcat user
       ansible.builtin.file:
