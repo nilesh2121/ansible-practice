@@ -83,19 +83,18 @@
         owner: "{{ username }}"
         group: "{{ username }}"
       when: ansible_facts['os_family'] == "Debian"
+      notify:
+        - reload the daemon and enable start the tomcat services
+    - name: ensure tomcat service is running
+      ansible.builtin.systemd:
+        name: 'tomcat.service'
+        state: 'started'
+      when: ansible_facts['os_family'] == "Debian"    
+  handlers:    
     - name: reload the daemon and enable start the tomcat services
       ansible.builtin.systemd:
         name: 'tomcat.service'
         daemon_reload: yes
         enabled: yes
-        state: started
+        state: restarted
       when: ansible_facts['os_family'] == "Debian"  
-
-        
-
-
-        
-
-      
-
-        
