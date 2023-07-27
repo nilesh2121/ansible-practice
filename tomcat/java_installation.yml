@@ -14,7 +14,7 @@
     - tomcat_admin_user: devops
     - tomcat_admin_password: devops
     - tomcat_users_relative: conf/tomcat-users.xml
-    - tomcat_manage_allow_ip: ".*"
+    - tomcat_manage_allow_ipregex: ".*"
     - tomcat_allow_context_locations:
         - /opt/tomcat/latest/webapps/manager/META-INF/context.xml
         - /opt/tomcat/latest/webapps/host-manager/META-INF/context.xml  
