@@ -114,7 +114,7 @@
         owner: "{{ username }}"
         group: "{{ username }}"
       when: ansible_facts['os_family'] == "Debian" 
-      loop: "{{ tomcat_allow_context_location: }}"
+      loop: "{{ tomcat_allow_context_location }}"
       notify:
         - reload the daemon and enable start the tomcat services            
   handlers:    
