@@ -15,10 +15,9 @@
     - tomcat_admin_password: devops
     - tomcat_users_relative: conf/tomcat-users.xml
     - tomcat_manage_allow_ip: ".*"
-    - tomcat_allow_context_location:
+    - tomcat_allow_context_locations:
         - /opt/tomcat/latest/webapps/manager/META-INF/context.xml
-        - /opt/tomcat/latest/webapps/host-manager/META-INF/context.xml
-      
+        - /opt/tomcat/latest/webapps/host-manager/META-INF/context.xml  
   tasks:
     - name: update apt repo and cache
       apt:
@@ -114,7 +113,7 @@
         owner: "{{ username }}"
         group: "{{ username }}"
       when: ansible_facts['os_family'] == "Debian" 
-      loop: "{{ tomcat_allow_context_location }}"
+      loop: "{{ tomcat_allow_context_locations }}"
       notify:
         - reload the daemon and enable start the tomcat services            
   handlers:    
