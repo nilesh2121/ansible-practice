@@ -12,9 +12,9 @@
     - tomcat_service_location: /etc/systemd/system/tomcat.service
     - java_home: /usr/lib/jvm/java-11-openjdk-amd64
     - tomcat_admin_user: devops
-    - tomcat_admin_password: india@123
+    - tomcat_admin_password: devops
     - tomcat_users_relative: conf/tomcat-users.xml
-    - tomcat_manage_allow_ipregex: ".*"
+    - tomcat_manage_allow_ipregex: "192.168.0.134"
     - tomcat_allow_context_locations:
         - /opt/tomcat/latest/webapps/manager/META-INF/context.xml
         - /opt/tomcat/latest/webapps/host-manager/META-INF/context.xml  
