@@ -14,6 +14,11 @@
     - tomcat_admin_user: devops
     - tomcat_admin_password: devops
     - tomcat_users_relative: conf/tomcat-users.xml
+    - tomcat_manage_allow_ip: ".*"
+    - tomcat_allow_context_location:
+        - /opt/tomcat/latest/webapps/manager/META-INF/context.xml
+        - /opt/tomcat/latest/webapps/host-manager/META-INF/context.xml
+      
   tasks:
     - name: update apt repo and cache
       apt:
@@ -102,6 +107,16 @@
       when: ansible_facts['os_family'] == "Debian"
       notify:
         - reload the daemon and enable start the tomcat services
+    - name: allow hostmanager and manager from specified ip range
+       ansible.builtin.template: 
+        src: 'manager-context.xml.j2'
+        dest: "{{ item }}" 
+        owner: "{{ username }}"
+        group: "{{ username }}"
+      when: ansible_facts['os_family'] == "Debian" 
+      loop: "{{ tomcat_allow_context_location: }}"
+      notify:
+        - reload the daemon and enable start the tomcat services            
   handlers:    
     - name: reload the daemon and enable start the tomcat services
       ansible.builtin.systemd:
