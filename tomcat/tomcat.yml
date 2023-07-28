@@ -65,4 +65,12 @@
     - name: print the files from previous
       debug:
         var: sh_files_tomcat_bin
-      when: ansible_facts['os_family'] == "Debian"              
+      when: ansible_facts['os_family'] == "Debian"
+    - name: Make shell script executable
+      ansible.builtin.file:  
+        path: '{{ item.path }}'
+        owner: "{{ username }}"
+        group: "{{ username }}"
+        mode: '0755'
+      loop: "{{ sh_files_tomcat_bin.files }}"  
+      when: ansible_facts['os_family'] == "Debian"                    
