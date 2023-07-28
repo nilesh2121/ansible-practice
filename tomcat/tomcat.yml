@@ -7,7 +7,8 @@
     - home_dir: /opt/tomcat
     - default_shell: /bin/false 
     - tomcat_version: 9.0.78
-    - tomcat_latest: /opt/tomcat/latest    
+    - tomcat_latest: /opt/tomcat/latest
+    - tomcat_bin_folder: /opt/tomcat/latest/bin/        
   tasks:
     - name: update apt repo and cache
       apt:
@@ -55,3 +56,13 @@
         group: "{{ username }}"
         owner: "{{ username }}"
       when: ansible_facts['os_family'] == "Debian"      
+    - name: find the .sh file in bin directory
+      ansible.builtin.find:
+        paths: "{{ tomcat_bin_folder }}"
+        patterns: "*.sh"
+      when: ansible_facts['os_family'] == "Debian"
+      register: sh_files_tomcat_bin
+    - name: print the files from previous
+      debug:
+        var: sh_files_tomcat_bin
+      when: ansible_facts['os_family'] == "Debian"              
