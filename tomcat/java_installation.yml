@@ -97,7 +97,9 @@
     - name: ensure tomcat service is running
       ansible.builtin.systemd:
         name: 'tomcat.service'
-        state: 'started'
+        daemon_reload: yes
+        enabled: yes
+        state: started
       when: ansible_facts['os_family'] == "Debian"
     - name: create the tomcat user file
       ansible.builtin.template: 
