@@ -8,7 +8,7 @@
     - default_shell: /bin/false 
     - tomcat_version: 9.0.78
     - tomcat_latest: /opt/tomcat/latest
-    - tomcat_bin_folder: /opt/tomcat/latest/bin/
+    - tomcat_bin_directory: /opt/tomcat/latest/bin/
     - tomcat_service_location: /etc/systemd/system/tomcat.service
     - java_home: /usr/lib/jvm/java-11-openjdk-amd64 
     - tomcat_admin_user: admin 
@@ -67,7 +67,7 @@
       when: ansible_facts['os_family'] == "Debian"      
     - name: find the .sh file in bin directory
       ansible.builtin.find:
-        paths: "{{ tomcat_bin_folder }}"
+        paths: "{{ tomcat_bin_directory }}"
         patterns: "*.sh"
       when: ansible_facts['os_family'] == "Debian"
       register: sh_files_tomcat_bin
