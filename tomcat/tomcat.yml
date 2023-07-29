@@ -6,13 +6,13 @@
     - username: tomcat
     - home_dir: /opt/tomcat
     - default_shell: /bin/false 
-    - tomcat_version: 10.1.11
+    - tomcat_version: 9.0.78
     - tomcat_latest: /opt/tomcat/latest
     - tomcat_bin_folder: /opt/tomcat/latest/bin/
     - tomcat_service_location: /etc/systemd/system/tomcat.service
     - java_home: /usr/lib/jvm/java-11-openjdk-amd64 
-    - tomcat_admin_user: tomcat
-    - tomcat_admin_password: s3cret
+    - tomcat_admin_user: qtdevops
+    - tomcat_admin_password: qtdevops
     - tomcat_users_relative: conf/tomcat-users.xml
     - tomcat_manager_allow_ipregex: ".*"
     - tomcat_allow_context_locations:
@@ -37,7 +37,7 @@
       when: ansible_facts['os_family'] == "Debian"  
     - name: download tomcat
       ansible.builtin.get_url:
-        url: "https://dlcdn.apache.org/tomcat/tomcat-10/v{{tomcat_version}}/bin/apache-tomcat-{{tomcat_version}}.tar.gz"
+        url: "https://dlcdn.apache.org/tomcat/tomcat-9/v{{tomcat_version}}/bin/apache-tomcat-{{tomcat_version}}.tar.gz"
         dest: "/tmp/apache-tomcat-{{tomcat_version}}.tar.gz"
       when: ansible_facts['os_family'] == "Debian"
     - name: Extract tomcat  
