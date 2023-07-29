@@ -11,6 +11,8 @@
     - tomcat_bin_folder: /opt/tomcat/latest/bin/
     - tomcat_service_location: /etc/systemd/system/tomcat.service
     - java_home: /usr/lib/jvm/java-11-openjdk-amd64
+    - tomcat_admin_user: devops
+    - tomcat_admin_password: devops
     - tomcat_users_relative: conf/tomcat-users.xml
     - tomcat_manager_allow_ipregex: ".*"
     - tomcat_allow_context_locations:
