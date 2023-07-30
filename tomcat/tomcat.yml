@@ -100,7 +100,7 @@
         state: 'started'
       when: ansible_facts['os_family'] == "Debian"
     - name: create the tomcat user file
-      ansible.builtin.template: 
+      ansible.builtin.systemd: 
         src: 'tomcat-users'
         dest: "{{ tomcat_latest }}/{{ tomcat_users_relative }}" 
         owner: "{{ username }}"
