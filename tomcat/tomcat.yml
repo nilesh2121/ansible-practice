@@ -11,6 +11,8 @@
     - tomcat_bin_directory: /opt/tomcat/latest/bin/
     - tomcat_service_location: /etc/systemd/system/tomcat.service
     - java_home: /usr/lib/jvm/java-11-openjdk-amd64 
+    - tomcat_admin_user: admin 
+    - tomcat_admin_password: admin
     - tomcat_users_relative: conf/tomcat-users.xml
     - tomcat_manager_allow_ipregex: ".*"
     - tomcat_allow_context_locations:
@@ -98,6 +100,12 @@
         state: 'started'
       when: ansible_facts['os_family'] == "Debian"
     - name: create the tomcat user file
+      ansible.builtin.template: 
+        src: 'tomcat-users.xml.j2'
+        dest: "{{ tomcat_latest }}/{{ tomcat_users_relative }}" 
+        owner: "{{ username }}"
+        group: "{{ username }}"
+      when: ansible_facts['os_family'] == "Debian"
       notify:
         - reload the daemon and enable start the tomcat services
     - name: allow hostmanager and manager from specified ip range
