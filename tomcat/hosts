@@ -1,2 +1,2 @@
 [appserver]
-172.31.42.172 java_package=openjdk-11-jdk
+192.168.0.134 java_package=openjdk-11-jdk
