@@ -3,9 +3,9 @@
   become: yes
   hosts: webserver
   tasks:
-    - name: update apt repo and cache
-        apt:
-        update_cache: yes
+    - name: update ubuntu package
+      apt:
+        update_cache: yes 
     - name: install apache 2 on ubuntu 
       ansible.builtin.package:
       package: 
