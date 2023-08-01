@@ -10,5 +10,5 @@
     - name: install apache 2 on ubuntu 
       ansible.builtin.apt: 
         name: apache 2 
-        state: yes
+        state: present 
       when: ansible_facts['os_family'] == "Debian" 
