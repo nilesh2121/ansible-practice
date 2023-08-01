@@ -6,9 +6,10 @@
     - name: update ubuntu package
       apt:
         update_cache: yes 
-    - name: install apache2 on ubuntu 
+      when: ansible_facts['os_family'] == "Debian"         
+    - name: install apache2 on ubuntu
       ansible.builtin.package:
-      package: 
+      package:
         name: "{{ apache_package }}"
         state: present 
       notify: 
