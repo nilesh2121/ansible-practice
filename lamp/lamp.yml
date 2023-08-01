@@ -26,7 +26,7 @@
         - ensure apache enabled and restarted
     - name: copy the php info page
       ansible.builtin.copy:
-        src: www/ifo.php
+        src: www/info.php
         dest: "{{ php_page_location }}"  
       notify: 
         - ensure apache enabled and restarted               
