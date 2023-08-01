@@ -4,8 +4,8 @@
   hosts: webserver
   tasks:
     - name: update apt repo and cache
-      apt:
-      update_cache: yes
+        apt:
+        update_cache: yes
     - name: install apache 2 on ubuntu 
       ansible.builtin.package:
       package: 
