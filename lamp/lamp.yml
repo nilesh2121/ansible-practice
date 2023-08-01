@@ -23,7 +23,7 @@
     - name: copy the php info page
       ansible.builtin.copy:
         src: www/info.php
-        dest: "{{ php_page_location }}"  
+        dest: "{{ php_page_location }}" 
       notify: 
         - ensure apache enabled and restarted               
   handlers:          
