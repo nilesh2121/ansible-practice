@@ -6,7 +6,7 @@
     - name: update ubuntu package
       apt:
         update_cache: yes 
-    - name: install apache 2 on ubuntu 
+    - name: install apache2 on ubuntu 
       ansible.builtin.package:
       package: 
         name: "{{ apache_package }}"
