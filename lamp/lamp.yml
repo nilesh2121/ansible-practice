@@ -9,14 +9,12 @@
       when: ansible_facts['os_family'] == "Debian"         
     - name: install apache2 on ubuntu
       ansible.builtin.package:
-      package:
         name: "{{ apache_package }}"
         state: present 
       notify: 
         - ensure apache enabled and restarted 
     - name: install php on ubuntu 
       ansible.builtin.package:
-      package: 
         name: "{{ item }}"
         state: present 
       loop: "{{ php_package }}"  
