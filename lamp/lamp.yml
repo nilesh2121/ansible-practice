@@ -1,14 +1,39 @@
 ---
-- name: Install tomcat
+- name: Install lamp
   become: yes
-  hosts: appserver
+  hosts: webserver
   tasks:
     - name: update apt repo and cache
       apt:
        update_cache: yes
       when: ansible_facts['os_family'] == "Debian"  
     - name: install apache 2 on ubuntu 
-      ansible.builtin.apt: 
-        name: apache2 
+      ansible.builtin.package:
+      package: 
+        name: "{{ apache_package }}"
         state: present 
-      when: ansible_facts['os_family'] == "Debian" 
+      when: ansible_facts['os_family'] == "Debian"
+      notify: 
+        - ensure apache enabled and restarted 
+    - name: install php on ubuntu 
+      ansible.builtin.package:
+      package: 
+        name: "{{ item }}"
+        state: present 
+      loop: "{{ php_package }}"  
+      when: ansible_facts['os_family'] == "Debian"
+      notify: 
+        - ensure apache enabled and restarted
+    - name: copy the php info page
+      ansible.builtin.copy:
+        src: www/ifo.php
+        dest: "{{ php_page_location }}"  
+      notify: 
+        - ensure apache enabled and restarted               
+  handlers:          
+    - name: ensure apache enabled and restarted
+      ansible.builtin.service:
+        name: "{{ apache_package }}" 
+        enabled: yes
+        state: restarted
+
